@@ -91,4 +91,18 @@ public class Book implements Serializable {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", cover='" + cover + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", date='" + date + '\'' +
+                ", press='" + press + '\'' +
+                ", abs='" + abs + '\'' +
+                ", category=" + category.toString() +
+                '}';
+    }
 }
