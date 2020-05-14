@@ -20,7 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> list() {
-        return categoryDao.findAll(Sort.by(Sort.Direction.DESC,"id"));
+        return categoryDao.findAll();
     }
 
     @Override

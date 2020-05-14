@@ -1,6 +1,7 @@
 package com.donald.wj_back.controller;
 
 import com.donald.wj_back.pojo.Book;
+import com.donald.wj_back.pojo.Category;
 import com.donald.wj_back.service.BookService;
 import com.donald.wj_back.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,10 @@ public class LibraryController {
         }else{
             return bookService.search(keyword,pageable);
         }
+    }
+
+    @GetMapping("categories")
+    public List<Category> getCategories(){
+        return categoryService.list();
     }
 }
