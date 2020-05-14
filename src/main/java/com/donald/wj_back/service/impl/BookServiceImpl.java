@@ -7,6 +7,8 @@ import com.donald.wj_back.pojo.Category;
 import com.donald.wj_back.service.BookService;
 import com.donald.wj_back.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,8 +29,8 @@ public class BookServiceImpl implements BookService {
     private CategoryService categoryService;
 
     @Override
-    public List<Book> list() {
-        return bookDao.findAll(Sort.by(Sort.Direction.DESC,"id"));
+    public Page<Book> list(Pageable pageable) {
+        return bookDao.findAll(pageable);
     }
 
     @Override
@@ -43,8 +45,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> listByCategory(int cid) {
+    public Page<Book> listByCategory(int cid,Pageable pageable) {
         Category category = categoryService.get(cid);
-        return bookDao.findAllByCategory(category);
+        return bookDao.findAllByCategory(category,pageable);
+    }
+
+    @Override
+    public Page<Book> search(String keyword,Pageable pageable) {
+        return bookDao.findAllByTitleLikeOrAuthorLike("%"+keyword+"%","%"+keyword+"%",pageable);
     }
 }
