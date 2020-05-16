@@ -10,10 +10,10 @@
     </parent>
     <groupId>com.donald</groupId>
     <artifactId>wj-back</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>wj-back</name>
-    <description>Demo project for Spring Boot</description>
-
+    <description>White_Jotter</description>
+    <packaging>jar</packaging>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -59,7 +59,7 @@
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
-            <version>1.3.2</version>
+            <version>1.4.1</version>
         </dependency>
     </dependencies>
 

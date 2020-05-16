@@ -2,8 +2,20 @@ package com.donald.wj_back.controller;
 
 import com.donald.wj_back.pojo.User;
 import com.donald.wj_back.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.SecureRandomNumberGenerator;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
 /**
@@ -19,15 +31,44 @@ public class LoginController {
 
 
     @PostMapping("login")
-    public int login(@RequestBody User user){
-        String username=user.getUsername();
-        username = HtmlUtils.htmlEscape(username);
-        User user1 = userService.get(username, user.getPassword());
-        if(null == user1){
-            return 400;
-        }else {
-            return 200;
+    public ResponseEntity<String> login(@RequestBody User user){
+        Subject subject = SecurityUtils.getSubject();
+        String username = user.getUsername();
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username,user.getPassword());
+
+        try {
+            subject.login(usernamePasswordToken);
+            return ResponseEntity.ok(username);
+        } catch (UnknownAccountException e) {
+            e.printStackTrace();
+            return new ResponseEntity(new Error("Username does not exist"), HttpStatus.NOT_FOUND);
+        }catch (IncorrectCredentialsException e){
+            e.printStackTrace();
+            return new ResponseEntity(new Error("Wrong password"),HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping("register")
+    public ResponseEntity<User> register(@RequestBody User user){
+        String username = user.getUsername();
+        String password = user.getPassword();
+        username = HtmlUtils.htmlEscape(username);
+        user.setUsername(username);
+
+        boolean exist = userService.isExist(username);
+        if(exist){
+            return new ResponseEntity(new Error("Username already exists"),HttpStatus.BAD_REQUEST);
+        }
+        String salt = new SecureRandomNumberGenerator().nextBytes().toString();
+
+        int times =2;
+        String encodePassword = new SimpleHash("md5",password,salt,times).toString();
+
+        user.setSalt(salt);
+        user.setPassword(encodePassword);
+        userService.add(user);
+        return ResponseEntity.ok(user);
+
     }
 
 }
