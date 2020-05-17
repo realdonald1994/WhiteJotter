@@ -8,14 +8,12 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
 /**
@@ -35,7 +33,7 @@ public class LoginController {
         Subject subject = SecurityUtils.getSubject();
         String username = user.getUsername();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username,user.getPassword());
-
+        usernamePasswordToken.setRememberMe(true);
         try {
             subject.login(usernamePasswordToken);
             return ResponseEntity.ok(username);
@@ -71,4 +69,16 @@ public class LoginController {
 
     }
 
+    @GetMapping("/logout")
+    public ResponseEntity<String> logout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        String message = "Logout Successfully";
+        return ResponseEntity.ok(message);
+    }
+
+    @GetMapping("/authentication")
+    public String authentication() {
+        return "Successful identity verification";
+    }
 }
