@@ -1,6 +1,7 @@
 package com.donald.wj_back.controller;
 
 import com.donald.wj_back.dto.UserDTO;
+import com.donald.wj_back.pojo.User;
 import com.donald.wj_back.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("admin/user")
-    public ResponseEntity<List<UserDTO>> listUsers(){
+    public ResponseEntity<List<User>> listUsers(){
         return ResponseEntity.ok(userService.list());
     }
 }

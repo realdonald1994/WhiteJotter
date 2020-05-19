@@ -44,10 +44,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> list() {
+    public List<User> list() {
         List<User> users = userDao.findAll();
-        List<UserDTO> userDTOS = users
-                .stream().map(user -> (UserDTO) new UserDTO().convertFrom(user)).collect(Collectors.toList());
-        return userDTOS;
+//        List<UserDTO> userDTOS = users
+//                .stream().map(user -> (UserDTO) new UserDTO().convertFrom(user)).collect(Collectors.toList());
+//        return userDTOS;
+        return users;
     }
 }

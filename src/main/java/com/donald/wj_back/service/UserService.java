@@ -19,5 +19,5 @@ public interface UserService {
     User get(String username,String password);
 
     void add(User user);
-    List<UserDTO> list();
+    List<User> list();
 }
