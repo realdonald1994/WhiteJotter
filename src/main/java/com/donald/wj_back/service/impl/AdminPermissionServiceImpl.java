@@ -35,6 +35,7 @@ public class AdminPermissionServiceImpl implements AdminPermissionService {
         return adminPermissionDao.findAll();
     }
 
+    @Override
     public Set<String> listPermissionURLByUser(String username){
         List<Integer> rids = adminRoleService.listRolesByUser(username).stream().map(AdminRole::getId).collect(Collectors.toList());
 
@@ -45,6 +46,7 @@ public class AdminPermissionServiceImpl implements AdminPermissionService {
         return URLs;
     }
 
+    @Override
     public boolean needFilter(String requestApi) {
         List<AdminPermission> ps = adminPermissionDao.findAll();
         for (AdminPermission p : ps) {

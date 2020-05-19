@@ -3,6 +3,7 @@ package com.donald.wj_back.service;
 import com.donald.wj_back.pojo.AdminPermission;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Donald
@@ -10,4 +11,6 @@ import java.util.List;
  */
 public interface AdminPermissionService {
     List<AdminPermission> list();
+    boolean needFilter(String requestApi);
+    Set<String> listPermissionURLByUser(String username);
 }
