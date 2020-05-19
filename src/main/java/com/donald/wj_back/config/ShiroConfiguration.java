@@ -39,8 +39,9 @@ public class ShiroConfiguration {
 
         customizedFilter.put("url",getURLPathMatchingFilter());
         filterChainDefinitionMap.put("/api/admin/**","url");
-        shiroFilterFactoryBean.setFilters(customizedFilter);
         filterChainDefinitionMap.put("/api/authentication","authc");
+        //shiroFilterFactoryBean.setFilters(customizedFilter);
+        filterChainDefinitionMap.put("/api/admin/**","authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

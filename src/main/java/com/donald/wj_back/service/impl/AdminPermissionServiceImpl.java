@@ -39,7 +39,7 @@ public class AdminPermissionServiceImpl implements AdminPermissionService {
     public Set<String> listPermissionURLByUser(String username){
         List<Integer> rids = adminRoleService.listRolesByUser(username).stream().map(AdminRole::getId).collect(Collectors.toList());
 
-        List<Integer> pids = adminRolePermissionDao.findAllByRid(rids).stream().map(AdminRolePermission::getPid).collect(Collectors.toList());
+        List<Integer> pids = adminRolePermissionDao.findAllByRidIn(rids).stream().map(AdminRolePermission::getPid).collect(Collectors.toList());
 
         List<AdminPermission> perms = adminPermissionDao.findAllById(pids);
         Set<String> URLs = perms.stream().map(AdminPermission::getUrl).collect(Collectors.toSet());

@@ -10,5 +10,5 @@ import java.util.List;
  * @data 19/05/2020 14:09
  */
 public interface AdminRolePermissionDao extends JpaRepository<AdminRolePermission,Integer> {
-    List<AdminRolePermission> findAllByRid(List<Integer> rids);
+    List<AdminRolePermission> findAllByRidIn(List<Integer> rids);
 }
