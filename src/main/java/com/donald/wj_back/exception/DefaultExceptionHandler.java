@@ -17,6 +17,6 @@ public class DefaultExceptionHandler {
     @ResponseBody
     public ResponseEntity<String> handleAuthorizationException(UnauthorizedException e){
         String message = "Authorization failed";
-        return new ResponseEntity(new Error(message),HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity(message,HttpStatus.UNAUTHORIZED);
     }
 }
