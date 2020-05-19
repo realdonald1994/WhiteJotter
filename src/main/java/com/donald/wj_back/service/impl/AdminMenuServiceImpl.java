@@ -43,13 +43,15 @@ public class AdminMenuServiceImpl implements AdminMenuService {
 
     @Override
     public List<AdminMenu> getMenusByCurrentUser(){
-        System.out.println(SecurityUtils.getSubject());
         String username = SecurityUtils.getSubject().getPrincipal().toString();
         User user = userService.getByName(username);
 
         List<Integer> rids = adminUserRoleService.listAllByUid(user.getId()).stream().map(AdminUserRole::getRid).collect(Collectors.toList());
 
-        List<AdminMenu> menus = adminRoleMenuService.findAllByRid(rids).stream().distinct().collect(Collectors.toList());
+        List<Integer> menuIds = adminRoleMenuService.findAllByRid(rids).stream().map(AdminRoleMenu::getMid).collect(Collectors.toList());
+        List<AdminMenu> menus = adminMenuDao.findAllById(menuIds).stream().distinct().collect(Collectors.toList());
+
+        handleMenus(menus);
         return menus;
     }
 

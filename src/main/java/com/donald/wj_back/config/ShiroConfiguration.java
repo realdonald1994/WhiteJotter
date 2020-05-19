@@ -22,6 +22,7 @@ public class ShiroConfiguration {
     /**
      * ShiroFilterFactoryBean
      */
+    @Bean
     public ShiroFilterFactoryBean shiroFilter(){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager());
@@ -35,6 +36,7 @@ public class ShiroConfiguration {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         SecurityUtils.setSecurityManager(securityManager);
         securityManager.setRealm(getWJRealm());
+        securityManager.setRememberMeManager(rememberMeManager());
         return securityManager;
     }
     /**

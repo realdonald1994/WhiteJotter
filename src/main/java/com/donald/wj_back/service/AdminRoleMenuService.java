@@ -10,5 +10,5 @@ import java.util.List;
  * @data 17/05/2020 17:21
  */
 public interface AdminRoleMenuService {
-    List<AdminMenu> findAllByRid(List<Integer> rids);
+    List<AdminRoleMenu> findAllByRid(List<Integer> rids);
 }

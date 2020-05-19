@@ -19,7 +19,7 @@ public class AdminRoleMenuServiceImpl implements AdminRoleMenuService {
     @Autowired
     private AdminRoleMenuDao adminRoleMenuDao;
     @Override
-    public List<AdminMenu> findAllByRid(List<Integer> rids) {
+    public List<AdminRoleMenu> findAllByRid(List<Integer> rids) {
         return adminRoleMenuDao.findAllByRidIn(rids);
     }
 }

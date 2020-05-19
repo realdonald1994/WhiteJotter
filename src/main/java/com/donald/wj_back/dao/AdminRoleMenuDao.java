@@ -11,5 +11,5 @@ import java.util.List;
  * @data 17/05/2020 17:17
  */
 public interface AdminRoleMenuDao extends JpaRepository<AdminRoleMenu,Integer> {
-    List<AdminMenu> findAllByRidIn(List<Integer> rids);
+    List<AdminRoleMenu> findAllByRidIn(List<Integer> rids);
 }
