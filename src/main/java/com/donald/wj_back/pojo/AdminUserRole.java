@@ -16,12 +16,12 @@ public class AdminUserRole {
     /**
      * User id.
      */
-    private int uid;
+    private Integer uid;
 
     /**
      * Role id.
      */
-    private int rid;
+    private Integer rid;
 
     public Integer getId() {
         return id;
@@ -31,19 +31,19 @@ public class AdminUserRole {
         this.id = id;
     }
 
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
-    public int getRid() {
+    public Integer getRid() {
         return rid;
     }
 
-    public void setRid(int rid) {
+    public void setRid(Integer rid) {
         this.rid = rid;
     }
 }

@@ -16,12 +16,12 @@ public class AdminRoleMenu {
     /**
      * Role id.
      */
-    private int rid;
+    private Integer rid;
 
     /**
      * Menu id.
      */
-    private int mid;
+    private Integer mid;
 
     public Integer getId() {
         return id;
@@ -31,19 +31,20 @@ public class AdminRoleMenu {
         this.id = id;
     }
 
-    public int getRid() {
+
+    public Integer getRid() {
         return rid;
     }
 
-    public void setRid(int rid) {
+    public void setRid(Integer rid) {
         this.rid = rid;
     }
 
-    public int getMid() {
+    public Integer getMid() {
         return mid;
     }
 
-    public void setMid(int mid) {
+    public void setMid(Integer mid) {
         this.mid = mid;
     }
 }
