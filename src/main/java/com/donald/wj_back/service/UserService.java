@@ -1,6 +1,9 @@
 package com.donald.wj_back.service;
 
+import com.donald.wj_back.dto.UserDTO;
 import com.donald.wj_back.pojo.User;
+
+import java.util.List;
 
 /**
  * @author Donald
@@ -16,4 +19,5 @@ public interface UserService {
     User get(String username,String password);
 
     void add(User user);
+    List<UserDTO> list();
 }

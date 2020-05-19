@@ -1,11 +1,15 @@
 package com.donald.wj_back.service.impl;
 
 import com.donald.wj_back.dao.UserDao;
+import com.donald.wj_back.dto.UserDTO;
 import com.donald.wj_back.pojo.User;
 import com.donald.wj_back.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Donald
@@ -37,5 +41,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void add(User user) {
         userDao.save(user);
+    }
+
+    @Override
+    public List<UserDTO> list() {
+        List<User> users = userDao.findAll();
+        List<UserDTO> userDTOS = users
+                .stream().map(user -> (UserDTO) new UserDTO().convertFrom(user)).collect(Collectors.toList());
+        return userDTOS;
     }
 }
