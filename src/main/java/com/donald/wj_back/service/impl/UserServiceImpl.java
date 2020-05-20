@@ -2,7 +2,10 @@ package com.donald.wj_back.service.impl;
 
 import com.donald.wj_back.dao.UserDao;
 import com.donald.wj_back.dto.UserDTO;
+import com.donald.wj_back.pojo.AdminRole;
 import com.donald.wj_back.pojo.User;
+import com.donald.wj_back.service.AdminRoleService;
+import com.donald.wj_back.service.AdminUserRoleService;
 import com.donald.wj_back.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private AdminRoleService adminRoleService;
+    @Autowired
+    private AdminUserRoleService adminUserRoleService;
 
     @Override
     public boolean isExist(String username) {
@@ -49,6 +56,20 @@ public class UserServiceImpl implements UserService {
 //        List<UserDTO> userDTOS = users
 //                .stream().map(user -> (UserDTO) new UserDTO().convertFrom(user)).collect(Collectors.toList());
 //        return userDTOS;
+        List<AdminRole> roles;
+        for (User user : users) {
+            roles = adminRoleService.listRolesByUser(user.getUsername());
+            user.setRoles(roles);
+        }
         return users;
+    }
+
+    @Override
+    public void editUser(User user) {
+        User userInDb = userDao.findByUsername(user.getUsername());
+        userInDb.setPhone(user.getPhone());
+        userInDb.setEmail(user.getEmail());
+        userDao.save(userInDb);
+        adminUserRoleService.saveRoleChanges(user.getId(),user.getRoles());
     }
 }

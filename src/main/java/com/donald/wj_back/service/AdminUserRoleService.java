@@ -1,5 +1,6 @@
 package com.donald.wj_back.service;
 
+import com.donald.wj_back.pojo.AdminRole;
 import com.donald.wj_back.pojo.AdminUserRole;
 
 import java.util.List;
@@ -10,4 +11,5 @@ import java.util.List;
  */
 public interface AdminUserRoleService {
     List<AdminUserRole> listAllByUid(int uid);
+    void saveRoleChanges(int uid, List<AdminRole> roles);
 }

@@ -6,9 +6,7 @@ import com.donald.wj_back.service.UserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +24,12 @@ public class UserController {
     @GetMapping("/admin/user")
     public ResponseEntity<List<User>> listUsers() throws Exception{
         return ResponseEntity.ok(userService.list());
+    }
+
+    @PutMapping("/admin/user")
+    public ResponseEntity<String> editUser(@RequestBody User updateUser){
+        userService.editUser(updateUser);
+        String message = "Modify user successfully";
+        return ResponseEntity.ok(message);
     }
 }
