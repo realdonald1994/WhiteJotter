@@ -6,6 +6,7 @@ import com.donald.wj_back.pojo.AdminPermission;
 import com.donald.wj_back.pojo.AdminRole;
 import com.donald.wj_back.pojo.AdminRolePermission;
 import com.donald.wj_back.service.AdminPermissionService;
+import com.donald.wj_back.service.AdminRolePermissionService;
 import com.donald.wj_back.service.AdminRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,10 @@ public class AdminPermissionServiceImpl implements AdminPermissionService {
     private AdminRoleService adminRoleService;
     @Autowired
     private AdminRolePermissionDao adminRolePermissionDao;
+    @Autowired
+    private AdminRolePermissionService adminRolePermissionService;
+
+
 
 
     @Override
@@ -44,6 +49,12 @@ public class AdminPermissionServiceImpl implements AdminPermissionService {
         List<AdminPermission> perms = adminPermissionDao.findAllById(pids);
         Set<String> URLs = perms.stream().map(AdminPermission::getUrl).collect(Collectors.toSet());
         return URLs;
+    }
+
+    @Override
+    public List<AdminPermission> listPermsByRoleId(int rid) {
+        List<Integer> pids = adminRolePermissionService.findAllByRid(rid).stream().map(AdminRolePermission::getPid).collect(Collectors.toList());
+        return adminPermissionDao.findAllById(pids);
     }
 
     @Override

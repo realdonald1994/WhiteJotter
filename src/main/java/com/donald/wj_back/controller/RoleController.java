@@ -1,6 +1,8 @@
 package com.donald.wj_back.controller;
 
+import com.donald.wj_back.pojo.AdminPermission;
 import com.donald.wj_back.pojo.AdminRole;
+import com.donald.wj_back.service.AdminPermissionService;
 import com.donald.wj_back.service.AdminRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +21,16 @@ import java.util.List;
 public class RoleController {
     @Autowired
     private AdminRoleService adminRoleService;
+    @Autowired
+    private AdminPermissionService adminPermissionService;
 
     @GetMapping("/admin/role")
     public ResponseEntity<List<AdminRole>> listRoles() throws Exception{
         return ResponseEntity.ok(adminRoleService.list());
+    }
+
+    @GetMapping("/admin/role/perm")
+    public ResponseEntity<List<AdminPermission>> listPerms() throws Exception{
+        return ResponseEntity.ok(adminPermissionService.list());
     }
 }

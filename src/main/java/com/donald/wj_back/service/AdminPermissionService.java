@@ -13,4 +13,5 @@ public interface AdminPermissionService {
     List<AdminPermission> list();
     boolean needFilter(String requestApi);
     Set<String> listPermissionURLByUser(String username);
+    List<AdminPermission> listPermsByRoleId(int rid);
 }

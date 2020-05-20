@@ -1,8 +1,10 @@
 package com.donald.wj_back.service.impl;
 
 import com.donald.wj_back.dao.AdminRoleDao;
+import com.donald.wj_back.pojo.AdminPermission;
 import com.donald.wj_back.pojo.AdminRole;
 import com.donald.wj_back.pojo.AdminUserRole;
+import com.donald.wj_back.service.AdminPermissionService;
 import com.donald.wj_back.service.AdminRoleService;
 import com.donald.wj_back.service.AdminUserRoleService;
 import com.donald.wj_back.service.UserService;
@@ -24,6 +26,8 @@ public class AdminRoleServiceImpl implements AdminRoleService {
     private AdminUserRoleService adminUserRoleService;
     @Autowired
     private AdminRoleDao adminRoleDao;
+    @Autowired
+    private AdminPermissionService adminPermissionService;
     @Override
     public List<AdminRole> listRolesByUser(String username) {
         Integer uid = userService.getByName(username).getId();
@@ -34,6 +38,12 @@ public class AdminRoleServiceImpl implements AdminRoleService {
 
     @Override
     public List<AdminRole> list() {
-        return adminRoleDao.findAll();
+        List<AdminRole> roles = adminRoleDao.findAll();
+        List<AdminPermission> perms;
+        for (AdminRole role : roles) {
+            perms = adminPermissionService.listPermsByRoleId(role.getId());
+            role.setPerms(perms);
+        }
+        return roles;
     }
 }
