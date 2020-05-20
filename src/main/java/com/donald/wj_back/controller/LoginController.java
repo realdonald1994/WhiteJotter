@@ -8,7 +8,6 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
-import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +32,7 @@ public class LoginController {
         Subject subject = SecurityUtils.getSubject();
         String username = user.getUsername();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username,user.getPassword());
-        usernamePasswordToken.setRememberMe(true);
+        usernamePasswordToken.setRememberMe(false);
         try {
             subject.login(usernamePasswordToken);
             return ResponseEntity.ok(username);

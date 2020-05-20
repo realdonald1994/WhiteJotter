@@ -23,7 +23,7 @@ public class UserController {
     private UserService userService;
 
     @RequiresPermissions("/api/admin/user")
-    @GetMapping("admin/user")
+    @GetMapping("/admin/user")
     public ResponseEntity<List<User>> listUsers() throws Exception{
         return ResponseEntity.ok(userService.list());
     }

@@ -33,15 +33,19 @@ public class ShiroConfiguration {
     public ShiroFilterFactoryBean shiroFilter(){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager());
+        shiroFilterFactoryBean.setLoginUrl("/nowhere");
 
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
         Map<String,Filter> customizedFilter = new HashMap<>();
 
         customizedFilter.put("url",getURLPathMatchingFilter());
-        filterChainDefinitionMap.put("/api/admin/**","url");
+
         filterChainDefinitionMap.put("/api/authentication","authc");
-        //shiroFilterFactoryBean.setFilters(customizedFilter);
-        filterChainDefinitionMap.put("/api/admin/**","authc");
+        filterChainDefinitionMap.put("/api/menu", "authc");
+        filterChainDefinitionMap.put("/api/admin/**", "authc");
+
+        filterChainDefinitionMap.put("/api/admin/**","url");
+        shiroFilterFactoryBean.setFilters(customizedFilter);
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
