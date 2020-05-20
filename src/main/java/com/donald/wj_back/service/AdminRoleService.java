@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface AdminRoleService {
     List<AdminRole> listRolesByUser(String username);
+    List<AdminRole> list();
 }

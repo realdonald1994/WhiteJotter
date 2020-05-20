@@ -31,4 +31,9 @@ public class AdminRoleServiceImpl implements AdminRoleService {
         return adminRoleDao.findAllById(rids);
 
     }
+
+    @Override
+    public List<AdminRole> list() {
+        return adminRoleDao.findAll();
+    }
 }
