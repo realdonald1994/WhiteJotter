@@ -55,6 +55,14 @@ public class AdminMenuServiceImpl implements AdminMenuService {
         return menus;
     }
 
+    @Override
+    public List<AdminMenu> getMenusByRoleId(int rid) {
+        List<Integer> mids = adminRoleMenuService.findAllByRid(rid).stream().map(AdminRoleMenu::getMid).collect(Collectors.toList());
+        List<AdminMenu> menus = adminMenuDao.findAllById(mids);
+        handleMenus(menus);
+        return menus;
+    }
+
     public void handleMenus(List<AdminMenu> menus){
         for (AdminMenu menu : menus) {
             List<AdminMenu> children = getAllByParentId(menu.getId());

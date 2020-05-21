@@ -12,4 +12,6 @@ public interface AdminMenuService {
     List<AdminMenu> getAllByParentId(int parentId);
 
     List<AdminMenu> getMenusByCurrentUser();
+
+    List<AdminMenu> getMenusByRoleId(int rid);
 }

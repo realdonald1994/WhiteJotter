@@ -3,6 +3,7 @@ package com.donald.wj_back.controller;
 import com.donald.wj_back.pojo.AdminMenu;
 import com.donald.wj_back.service.AdminMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,14 @@ public class MenuController {
     @Autowired
     private AdminMenuService adminMenuService;
 
+
     @GetMapping("menu")
     public List<AdminMenu> menu(){
         return adminMenuService.getMenusByCurrentUser();
+    }
+
+    @GetMapping("/admin/role/menu")
+    public ResponseEntity<List<AdminMenu>> listMenus(){
+        return ResponseEntity.ok(adminMenuService.getMenusByRoleId(1));
     }
 }

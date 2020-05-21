@@ -1,5 +1,6 @@
 package com.donald.wj_back.service;
 
+import com.donald.wj_back.pojo.AdminPermission;
 import com.donald.wj_back.pojo.AdminRolePermission;
 
 import java.util.List;
@@ -10,4 +11,6 @@ import java.util.List;
  */
 public interface AdminRolePermissionService {
     List<AdminRolePermission> findAllByRid(int rid);
+
+    void savePermChanges(int rid, List<AdminPermission> perms);
 }

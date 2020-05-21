@@ -11,4 +11,6 @@ import java.util.List;
 public interface AdminRoleService {
     List<AdminRole> listRolesByUser(String username);
     List<AdminRole> list();
+    void addOrUpdate(AdminRole adminRole);
+    void editRole(AdminRole adminRole);
 }

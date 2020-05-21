@@ -4,6 +4,7 @@ import com.donald.wj_back.pojo.AdminMenu;
 import com.donald.wj_back.pojo.AdminRoleMenu;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Donald
@@ -11,4 +12,7 @@ import java.util.List;
  */
 public interface AdminRoleMenuService {
     List<AdminRoleMenu> findAllByRid(List<Integer> rids);
+    List<AdminRoleMenu> findAllByRid(int rid);
+
+    void updateRoleMenu(int rid, Map<String, List<Integer>> menusIds);
 }
