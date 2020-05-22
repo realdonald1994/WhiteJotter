@@ -14,7 +14,6 @@ public class JotterArticle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @NotNull(message = "id can't be null")
     private Integer id;
 
     /**

@@ -13,4 +13,6 @@ public interface JotterArticleService {
     void addOrUpdate(JotterArticle jotterArticle);
 
     Page<JotterArticle> list(int page,int size);
+
+    JotterArticle findById(int id);
 }

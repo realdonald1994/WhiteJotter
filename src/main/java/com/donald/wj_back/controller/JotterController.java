@@ -30,4 +30,9 @@ public class JotterController {
     public ResponseEntity<Page<JotterArticle>> listArticles(@PathVariable("size")int size,@PathVariable("page") int page){
         return ResponseEntity.ok(jotterArticleService.list(page-1,size));
     }
+
+    @GetMapping("/article/{id}")
+    public ResponseEntity<JotterArticle> getOneArticle(@PathVariable("id")int id){
+        return ResponseEntity.ok(jotterArticleService.findById(id));
+    }
 }
