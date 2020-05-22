@@ -3,12 +3,10 @@ package com.donald.wj_back.controller;
 import com.donald.wj_back.pojo.JotterArticle;
 import com.donald.wj_back.service.JotterArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -26,5 +24,10 @@ public class JotterController {
     public ResponseEntity<String> saveArticle(@RequestBody @Valid JotterArticle jotterArticle){
         jotterArticleService.addOrUpdate(jotterArticle);
         return ResponseEntity.ok("Save Successfully");
+    }
+
+    @GetMapping("/article/{size}/{page}")
+    public ResponseEntity<Page<JotterArticle>> listArticles(@PathVariable("size")int size,@PathVariable("page") int page){
+        return ResponseEntity.ok(jotterArticleService.list(page-1,size));
     }
 }

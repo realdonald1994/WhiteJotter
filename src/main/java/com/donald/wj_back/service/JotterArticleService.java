@@ -1,6 +1,8 @@
 package com.donald.wj_back.service;
 
 import com.donald.wj_back.pojo.JotterArticle;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @author Donald
@@ -9,4 +11,6 @@ import com.donald.wj_back.pojo.JotterArticle;
 public interface JotterArticleService {
 
     void addOrUpdate(JotterArticle jotterArticle);
+
+    Page<JotterArticle> list(int page,int size);
 }

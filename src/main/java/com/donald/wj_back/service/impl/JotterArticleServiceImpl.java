@@ -4,6 +4,9 @@ import com.donald.wj_back.dao.JotterArticleDao;
 import com.donald.wj_back.pojo.JotterArticle;
 import com.donald.wj_back.service.JotterArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,5 +20,10 @@ public class JotterArticleServiceImpl implements JotterArticleService {
     @Override
     public void addOrUpdate(JotterArticle jotterArticle) {
         jotterArticleDao.save(jotterArticle);
+    }
+
+    @Override
+    public Page<JotterArticle> list(int page, int size) {
+        return jotterArticleDao.findAll(PageRequest.of(page,size, Sort.by(Sort.Direction.DESC,"id")));
     }
 }
