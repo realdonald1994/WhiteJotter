@@ -35,4 +35,10 @@ public class JotterController {
     public ResponseEntity<JotterArticle> getOneArticle(@PathVariable("id")int id){
         return ResponseEntity.ok(jotterArticleService.findById(id));
     }
+
+    @DeleteMapping("/admin/content/article/{id}")
+    public ResponseEntity<String> deleteArticle(@PathVariable("id") int id){
+        jotterArticleService.delete(id);
+        return ResponseEntity.ok("Delete Successfully");
+    }
 }

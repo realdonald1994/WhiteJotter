@@ -15,4 +15,5 @@ public interface JotterArticleService {
     Page<JotterArticle> list(int page,int size);
 
     JotterArticle findById(int id);
+    void delete(int id);
 }
