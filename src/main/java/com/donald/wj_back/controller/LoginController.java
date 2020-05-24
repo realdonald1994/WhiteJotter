@@ -26,7 +26,7 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-
+    @CrossOrigin
     @PostMapping("login")
     public ResponseEntity<String> login(@RequestBody User user){
         Subject subject = SecurityUtils.getSubject();
