@@ -77,7 +77,10 @@ public class LoginController {
     }
 
     @GetMapping("/authentication")
-    public String authentication() {
-        return "Successful identity verification";
+    public ResponseEntity<Void> authentication() {
+        if(!SecurityUtils.getSubject().isAuthenticated()){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.ok().build();
     }
 }
