@@ -56,4 +56,14 @@ public class RoleController {
         adminRoleService.updateStatus(role);
         return ResponseEntity.ok("Role's status is updated");
     }
+    @PostMapping("/admin/role")
+    public ResponseEntity<String> addRole(@RequestBody AdminRole role){
+        adminRoleService.addOrUpdate(role);
+        return ResponseEntity.ok("Add Role Successfully");
+    }
+    @DeleteMapping("/admin/role/delete")
+    public ResponseEntity<String> deleteRole(@RequestBody AdminRole role){
+        adminRoleService.deleteRole(role.getId());
+        return ResponseEntity.ok("Deleted Role Successfully");
+    }
 }

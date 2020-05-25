@@ -15,4 +15,6 @@ public interface AdminRoleService {
     void editRole(AdminRole adminRole);
 
     AdminRole updateStatus(AdminRole role);
+
+    void deleteRole(Integer id);
 }

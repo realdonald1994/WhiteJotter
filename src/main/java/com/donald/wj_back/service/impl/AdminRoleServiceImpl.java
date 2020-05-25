@@ -56,6 +56,7 @@ public class AdminRoleServiceImpl implements AdminRoleService {
 
     @Override
     public void addOrUpdate(AdminRole adminRole) {
+        adminRole.setEnabled(true);
         adminRoleDao.save(adminRole);
     }
 
@@ -71,5 +72,10 @@ public class AdminRoleServiceImpl implements AdminRoleService {
         AdminRole roleInDb = adminRoleDao.findById(role.getId().intValue());
         roleInDb.setEnabled(role.isEnabled());
         return adminRoleDao.save(role);
+    }
+
+    @Override
+    public void deleteRole(Integer id) {
+        adminRoleDao.deleteById(id);
     }
 }
