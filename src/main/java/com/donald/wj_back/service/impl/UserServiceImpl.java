@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void add(User user) {
+        user.setEnabled(true);
         userDao.save(user);
     }
 
@@ -92,6 +93,11 @@ public class UserServiceImpl implements UserService {
         User userInDb = userDao.findByUsername(requestUser.getUsername());
         userInDb.setEnabled(requestUser.isEnabled());
         userDao.save(userInDb);
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        userDao.deleteById(id);
     }
 
 

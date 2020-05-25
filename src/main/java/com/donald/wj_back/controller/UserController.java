@@ -45,4 +45,9 @@ public class UserController {
         userService.updateStatus(requestUser);
         return ResponseEntity.ok("User status is updated");
     }
+    @DeleteMapping("/admin/user/delete")
+    public ResponseEntity<String> deleteUser(@RequestBody User user){
+        userService.deleteUser(user.getId());
+        return ResponseEntity.ok("User is deleted");
+    }
 }

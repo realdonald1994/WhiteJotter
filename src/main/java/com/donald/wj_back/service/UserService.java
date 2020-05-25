@@ -26,4 +26,6 @@ public interface UserService {
     User restPassword(User requestUser);
 
     void updateStatus(User requestUser);
+
+    void deleteUser(int id);
 }
