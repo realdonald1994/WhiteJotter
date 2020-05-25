@@ -24,4 +24,6 @@ public interface UserService {
     void editUser(User user);
 
     User restPassword(User requestUser);
+
+    void updateStatus(User requestUser);
 }

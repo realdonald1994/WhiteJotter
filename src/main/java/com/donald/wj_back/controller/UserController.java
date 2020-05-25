@@ -39,4 +39,10 @@ public class UserController {
         userService.restPassword(requestUser);
         return ResponseEntity.ok("reset password successfully");
     }
+
+    @PutMapping("/admin/user/status")
+    public ResponseEntity<String> updateStatus(@RequestBody @Valid User requestUser){
+        userService.updateStatus(requestUser);
+        return ResponseEntity.ok("User status is updated");
+    }
 }

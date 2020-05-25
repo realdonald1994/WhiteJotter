@@ -86,4 +86,13 @@ public class UserServiceImpl implements UserService {
         userInDb.setPassword(encodedPassword);
         return userDao.save(userInDb);
     }
+
+    @Override
+    public void updateStatus(User requestUser) {
+        User userInDb = userDao.findByUsername(requestUser.getUsername());
+        userInDb.setEnabled(requestUser.isEnabled());
+        userDao.save(userInDb);
+    }
+
+
 }
