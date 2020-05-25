@@ -7,10 +7,13 @@ import com.donald.wj_back.pojo.User;
 import com.donald.wj_back.service.AdminRoleService;
 import com.donald.wj_back.service.AdminUserRoleService;
 import com.donald.wj_back.service.UserService;
+import org.apache.shiro.crypto.SecureRandomNumberGenerator;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,5 +74,16 @@ public class UserServiceImpl implements UserService {
         userInDb.setEmail(user.getEmail());
         userDao.save(userInDb);
         adminUserRoleService.saveRoleChanges(user.getId(),user.getRoles());
+    }
+
+    @Override
+    public User restPassword(User requestUser) {
+        User userInDb = userDao.findByUsername(requestUser.getUsername());
+        String salt = new SecureRandomNumberGenerator().nextBytes().toString();
+        int times = 2;
+        userInDb.setSalt(salt);
+        String encodedPassword = new SimpleHash("md5", "123", salt, times).toString();
+        userInDb.setPassword(encodedPassword);
+        return userDao.save(userInDb);
     }
 }

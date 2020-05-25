@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -31,5 +32,11 @@ public class UserController {
         userService.editUser(updateUser);
         String message = "Modify user successfully";
         return ResponseEntity.ok(message);
+    }
+
+    @PutMapping("/admin/user/password")
+    public ResponseEntity<String> resetPassword(@RequestBody @Valid User requestUser){
+        userService.restPassword(requestUser);
+        return ResponseEntity.ok("reset password successfully");
     }
 }

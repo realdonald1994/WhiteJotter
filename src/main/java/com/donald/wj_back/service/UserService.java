@@ -22,4 +22,6 @@ public interface UserService {
     List<User> list();
 
     void editUser(User user);
+
+    User restPassword(User requestUser);
 }
