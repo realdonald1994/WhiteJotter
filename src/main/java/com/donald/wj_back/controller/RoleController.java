@@ -2,6 +2,7 @@ package com.donald.wj_back.controller;
 
 import com.donald.wj_back.pojo.AdminPermission;
 import com.donald.wj_back.pojo.AdminRole;
+import com.donald.wj_back.pojo.User;
 import com.donald.wj_back.service.AdminPermissionService;
 import com.donald.wj_back.service.AdminRoleMenuService;
 import com.donald.wj_back.service.AdminRoleService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,5 +50,10 @@ public class RoleController {
     public ResponseEntity<String> editRoleMenu(@RequestParam int rid, @RequestBody Map<String, List<Integer>> menusIds){
         adminRoleMenuService.updateRoleMenu(rid,menusIds);
         return ResponseEntity.ok("Modify Menu Successfully");
+    }
+    @PutMapping("/admin/role/status")
+    public ResponseEntity<String> updateStatus(@RequestBody AdminRole role){
+        adminRoleService.updateStatus(role);
+        return ResponseEntity.ok("Role's status is updated");
     }
 }

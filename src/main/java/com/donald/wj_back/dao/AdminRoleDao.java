@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @data 17/05/2020 17:17
  */
 public interface AdminRoleDao extends JpaRepository<AdminRole,Integer> {
+    AdminRole findById(int id);
 }

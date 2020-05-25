@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -63,5 +64,12 @@ public class AdminRoleServiceImpl implements AdminRoleService {
     public void editRole(AdminRole adminRole) {
         adminRoleDao.save(adminRole);
         adminRolePermissionService.savePermChanges(adminRole.getId(),adminRole.getPerms());
+    }
+
+    @Override
+    public AdminRole updateStatus(AdminRole role) {
+        AdminRole roleInDb = adminRoleDao.findById(role.getId().intValue());
+        roleInDb.setEnabled(role.isEnabled());
+        return adminRoleDao.save(role);
     }
 }

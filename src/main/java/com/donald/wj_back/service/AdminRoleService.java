@@ -13,4 +13,6 @@ public interface AdminRoleService {
     List<AdminRole> list();
     void addOrUpdate(AdminRole adminRole);
     void editRole(AdminRole adminRole);
+
+    AdminRole updateStatus(AdminRole role);
 }
