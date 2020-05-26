@@ -36,8 +36,9 @@ Provide book and movie information display function
 
 Provide notes, blog posts display function
 
+![Jotter](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/jotter.png)
 
-
+![Detail](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/jotterdetail.png)
 
 ## 4.Background management
 
