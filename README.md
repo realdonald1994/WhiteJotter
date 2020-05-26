@@ -5,7 +5,9 @@
 ![lisense](https://img.shields.io/github/license/Antabot/White-Jotter-Vue)
 ![Build Status](https://www.travis-ci.org/Antabot/White-Jotter-Vue.svg?branch=master)
 ![Version](https://img.shields.io/badge/release-v1.0.8-blue)
-[![GITEE](https://img.shields.io/badge/Gitee-repo-green)](https://gitee.com/realdonald1994/WhiteJotter)
+[![GITEE](https://img.shields.io/badge/Gitee-repo-green)](https://gitee.com/realdonald1994/WhiteJotter_Vue)
+
+
 
 This is a simple front-end and back-end separation project, mainly developed using Vue.js + SpringBoot technologies.
 
@@ -46,6 +48,12 @@ Provide notes, blog posts display function
 Including dashboard, content management, user and authority management, etc.
 
 ![Admin](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/admin.png)
+
+## 5.About Me
+
+Personal introduction and related links
+
+![AboutMe](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/aboutme.png)
 
 # Technology stack
 
@@ -113,6 +121,6 @@ After the command is executed successfully, a dist folder is generated under the
 mvn clean install
 ```
 
-Finally, enter the command line `java -jar xxx.jar.package` in the newly generated target directory. Start back-end server.
+Finally, enter the command line `java -jar xxx.jar` in the newly generated `target` directory. Start back-end server.
 
 Enter the command line under the nginx file: `start nginx`. Start front-end server.
