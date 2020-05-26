@@ -44,7 +44,7 @@ Provide notes, blog posts display function
 
 Including dashboard, content management, user and authority management, etc.
 
-
+![Admin](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/admin.png)
 
 # Technology stack
 
