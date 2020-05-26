@@ -113,6 +113,6 @@ After the command is executed successfully, a dist folder is generated under the
 mvn clean install
 ```
 
-Finally, enter the command line `java -jar xxx.jar.package` in the newly generated target directory. Start back-end server.
+Finally, enter the command line `java -jar xxx.jar` in the newly generated `target` directory. Start back-end server.
 
 Enter the command line under the nginx file: `start nginx`. Start front-end server.
