@@ -43,7 +43,7 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/api/authentication","authc");
         filterChainDefinitionMap.put("/api/menu", "authc");
         filterChainDefinitionMap.put("/api/admin/**", "authc");
-
+        filterChainDefinitionMap.put("/api/categories","anon");
         filterChainDefinitionMap.put("/api/admin/**","url");
         shiroFilterFactoryBean.setFilters(customizedFilter);
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

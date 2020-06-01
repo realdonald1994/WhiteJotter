@@ -77,10 +77,10 @@ public class LoginController {
     }
 
     @GetMapping("/authentication")
-    public ResponseEntity<Void> authentication() {
+    public ResponseEntity<String> authentication() {
         if(!SecurityUtils.getSubject().isAuthenticated()){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return ResponseEntity.ok("not");
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("yes");
     }
 }
