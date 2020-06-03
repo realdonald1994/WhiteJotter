@@ -115,7 +115,7 @@ Since the port forwarding has been configured in the `wj-front` project to forwa
 npm run build
 ```
 
-After the command is executed successfully, a dist folder is generated under the wj-front directory, and the two files static and index.html in the folder can be copied to nginx.Then enter the backend root directory and execute the command line：
+After the command is executed successfully, a `dist` folder is generated under the wj-front directory, and the two files `assets` and `index.html` in the folder can be copied to nginx.Then enter the backend root directory and execute the command line：
 
 ```
 mvn clean install
