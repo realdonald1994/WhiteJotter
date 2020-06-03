@@ -55,11 +55,11 @@ Personal introduction and related links
 
 ![AboutMe](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/aboutme.png)
 
-# Technology stack
+# Technology Stack
 
-## 1. Front-end technology stack
+## 1. Frontend Technology Stack
 
-1.Vue  
+1.Vue.js  
 2.ElementUI  
 3.axios
 
@@ -69,6 +69,10 @@ Personal introduction and related links
 2.Spring Data + JPA  
 3.MySQL  
 4.Shiro
+
+## 3. Database
+
+1.Mysql
 
 # Deployment
 
@@ -124,3 +128,11 @@ mvn clean install
 Finally, enter the command line `java -jar xxx.jar` in the newly generated `target` directory. Start back-end server.
 
 Enter the command line under the nginx file: `start nginx`. Start front-end server.
+
+# Update
+
+## 2020
+
+06-02 The project is deployed on the cloud server and the website is published for the first time :star:
+05-29 Separate front-end and back-end projects
+04-20 Use open source [markdown editor](https://github.com/hinesboy/mavonEditor) to achieve article display and management module
