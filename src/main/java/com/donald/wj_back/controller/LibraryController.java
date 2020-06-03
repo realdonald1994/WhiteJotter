@@ -4,7 +4,9 @@ import com.donald.wj_back.pojo.Book;
 import com.donald.wj_back.pojo.Category;
 import com.donald.wj_back.service.BookService;
 import com.donald.wj_back.service.CategoryService;
-import com.donald.wj_back.utils.StringUtils;
+import com.github.tobato.fastdfs.domain.StorePath;
+import com.github.tobato.fastdfs.service.FastFileStorageClient;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,9 +15,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +29,9 @@ public class LibraryController {
     private BookService bookService;
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private FastFileStorageClient storageClient;
 
     @GetMapping("books")
     public Page<Book> list(@PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable){
@@ -70,22 +73,32 @@ public class LibraryController {
         return categoryService.list();
     }
 
-    @CrossOrigin
+    @CrossOrigin("http://www.whitejotter.site:8085")
     @PostMapping("covers")
     public String coverUpload(MultipartFile file) {
-        String folder = "G:/ws/data";
-        File imageFolder = new File(folder);
-        File f = new File(imageFolder, StringUtils.getRandomString(6)+file.getOriginalFilename().substring(file.getOriginalFilename().length()-4));
-        if(!f.getParentFile().exists()){
-            f.getParentFile().mkdir();
-        }
+//        String folder = "G:/ws/data";
+//        File imageFolder = new File(folder);
+//        File f = new File(imageFolder, StringUtils.getRandomString(6)+file.getOriginalFilename().substring(file.getOriginalFilename().length()-4));
+//        if(!f.getParentFile().exists()){
+//            f.getParentFile().mkdir();
+//        }
         try {
-            file.transferTo(f);
-            String imgURL = "http://localhost:8085/api/file/"+f.getName();
-            return imgURL;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "";
+            String originalFilename = file.getOriginalFilename();
+            String ext = StringUtils.substringAfterLast(originalFilename, ".");
+            StorePath storePath = this.storageClient.uploadFile(file.getInputStream(), file.getSize(), ext, null);
+            return "http://www.whitejotter.site:8082/"+storePath.getFullPath();
         }
+
+//        try {
+////            file.transferTo(f);
+////            String imgURL = "http://localhost:8085/api/file/"+f.getName();
+//
+//            return imgURL;
+//        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

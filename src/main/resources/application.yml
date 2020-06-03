@@ -5,3 +5,8 @@ server:
 spring:
   profiles:
     active: dev
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  tracker-list:
+    - 8.209.119.171:22122

@@ -25,15 +25,15 @@ public class MyWebConfigurer implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowCredentials(true)
-                .allowedOrigins("http://localhost:8080")
-//                .allowedOrigins("http://localhost:8081") //nginx
+//                .allowedOrigins("http://localhost:8080")
+                .allowedOrigins("*") //nginx
                 .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
                 .allowedHeaders("*")
                 .maxAge(3600);
     }
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/api/file/**").addResourceLocations("file:" + "G:/ws/data/");
-    }
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/api/file/**").addResourceLocations("file:" + "G:/ws/data/");
+//    }
 
 }
