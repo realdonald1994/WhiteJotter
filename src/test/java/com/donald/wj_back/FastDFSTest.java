@@ -26,7 +26,7 @@ public class FastDFSTest {
     @Test
     public void testUpload() throws FileNotFoundException {
         // 要上传的文件
-        File file = new File("G:\\ws\\data\\eb61qu.jpg");
+        File file = new File("G:\\ws\\prj\\wj-front\\src\\assets\\img\\icon\\logo.png");
         // 上传并保存图片，参数：1-上传的文件流 2-文件的大小 3-文件的后缀 4-可以不管他
         StorePath storePath = this.storageClient.uploadFile(
                 new FileInputStream(file), file.length(), "jpg", null);
