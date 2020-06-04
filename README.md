@@ -133,6 +133,7 @@ Enter the command line under the nginx file: `start nginx`. Start front-end serv
 
 ## 2020
 
+06-04 Use gzip to solve the webpage loading slowly  
 06-02 The project is deployed on the cloud server and the website is published for the first time :trophy:  
 05-29 Separate front-end and back-end projects  
 04-20 Use open source [markdown editor](https://github.com/hinesboy/mavonEditor) to achieve article display and management module  
