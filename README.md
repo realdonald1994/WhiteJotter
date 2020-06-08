@@ -61,7 +61,8 @@ Personal introduction and related links
 
 1.Vue.js  
 2.ElementUI  
-3.axios
+3.axios  
+4.Vuex
 
 ## 2. Backend Technology Stack
 
