@@ -75,6 +75,12 @@ Personal introduction and related links
 
 1.Mysql
 
+## 4. Server
+
+1.Centos7  
+2.Nginx  
+3.FastDFS  
+
 # Deployment
 
 1.clone project to local
