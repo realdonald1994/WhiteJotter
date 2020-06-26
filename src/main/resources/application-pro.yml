@@ -4,7 +4,13 @@ spring:
     url: jdbc:mysql://8.209.119.171:3306/white_jotter?serverTimezone=UTC
     username: root
     password: Zxcv569692?
-
+    hikari:
+      connection-timeout: 30000
+      minimum-idle: 5
+      maximum-pool-size: 15
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      auto-commit: true
   jpa:
     hibernate:
       ddl-auto: none
