@@ -6,10 +6,11 @@ spring:
     password: Zxcv569692?
     hikari:
       connection-timeout: 30000
-      minimum-idle: 5
-      maximum-pool-size: 15
+      minimum-idle: 3
+      maximum-pool-size: 5
       idle-timeout: 30000
       max-lifetime: 1800000
+      connection-test-query: SELECT 1
       auto-commit: true
   jpa:
     hibernate:
