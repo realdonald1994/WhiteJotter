@@ -2,6 +2,7 @@ package com.donald.wj_back.controller;
 
 import com.donald.wj_back.pojo.JotterArticle;
 import com.donald.wj_back.service.JotterArticleService;
+import com.donald.wj_back.utils.MyPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class JotterController {
     }
 
     @GetMapping("/article/{size}/{page}")
-    public ResponseEntity<Page<JotterArticle>> listArticles(@PathVariable("size")int size,@PathVariable("page") int page){
+    public ResponseEntity<MyPage<JotterArticle>> listArticles(@PathVariable("size")int size, @PathVariable("page") int page){
         return ResponseEntity.ok(jotterArticleService.list(page-1,size));
     }
 

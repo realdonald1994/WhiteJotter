@@ -1,6 +1,7 @@
 package com.donald.wj_back.service;
 
 import com.donald.wj_back.pojo.JotterArticle;
+import com.donald.wj_back.utils.MyPage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -12,7 +13,7 @@ public interface JotterArticleService {
 
     void addOrUpdate(JotterArticle jotterArticle);
 
-    Page<JotterArticle> list(int page,int size);
+    MyPage<JotterArticle> list(int page, int size);
 
     JotterArticle findById(int id);
     void delete(int id);

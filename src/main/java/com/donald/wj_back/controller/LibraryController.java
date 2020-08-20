@@ -4,6 +4,7 @@ import com.donald.wj_back.pojo.Book;
 import com.donald.wj_back.pojo.Category;
 import com.donald.wj_back.service.BookService;
 import com.donald.wj_back.service.CategoryService;
+import com.donald.wj_back.utils.MyPage;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import org.apache.commons.lang.StringUtils;
@@ -34,7 +35,7 @@ public class LibraryController {
     private FastFileStorageClient storageClient;
 
     @GetMapping("books")
-    public Page<Book> list(@PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable){
+    public MyPage<Book> list(@PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable){
         return bookService.list(pageable);
     }
 
@@ -54,7 +55,7 @@ public class LibraryController {
         if( 0!=cid){
             return bookService.listByCategory(cid,pageable);
         }else{
-            return list(pageable);
+            return (Page<Book>) list(pageable);
         }
     }
 
@@ -62,7 +63,7 @@ public class LibraryController {
     @GetMapping("search")
     public Page<Book> searchResult(@RequestParam("keyword") String keyword, @PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC)Pageable pageable){
         if("".equals(keyword)){
-            return bookService.list(pageable);
+            return (Page<Book>) bookService.list(pageable);
         }else{
             return bookService.search(keyword,pageable);
         }

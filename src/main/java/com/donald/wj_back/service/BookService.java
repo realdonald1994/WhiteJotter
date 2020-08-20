@@ -1,6 +1,7 @@
 package com.donald.wj_back.service;
 
 import com.donald.wj_back.pojo.Book;
+import com.donald.wj_back.utils.MyPage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -9,7 +10,7 @@ import org.springframework.data.domain.Pageable;
  * @data 13/05/2020 15:11
  */
 public interface BookService {
-    Page<Book> list(Pageable pageable);
+    MyPage<Book> list(Pageable pageable);
 
     void addOrUpdate(Book book);
 
