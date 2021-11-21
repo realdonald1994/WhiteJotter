@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://8.209.119.171:3306/white_jotter?serverTimezone=UTC
+    url: jdbc:mysql://project.c1x0fbf8ort1.us-east-2.rds.amazonaws.com:3306/white_jotter?serverTimezone=UTC
     username: root
     password: Zxcv569692?
     hikari:
