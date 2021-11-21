@@ -1,0 +1,27 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      # check Java version
+      - echo *** Java version ***
+      - java -version
+      - mvn -version
+      - chmod +x gradlew
+  build:
+    commands:
+      # build
+      - echo Building ..
+      - mvn clean install
+      - echo env $ENV
+      - echo $ENV > env.txt
+  post_build:
+    commands:
+      - echo Build completed
+artifacts:
+  files:
+    - env.txt
+    - build/libs/*.jar
+    - scripts/*.sh
+    - appspec.yml
+  discard-paths: yes
