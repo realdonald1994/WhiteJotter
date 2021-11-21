@@ -7,7 +7,6 @@ phases:
       - echo *** Java version ***
       - java -version
       - mvn -version
-      - chmod +x gradlew
   build:
     commands:
       # build
