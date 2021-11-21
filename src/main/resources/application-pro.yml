@@ -1,6 +1,6 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://project.c1x0fbf8ort1.us-east-2.rds.amazonaws.com:3306/white_jotter?serverTimezone=UTC
     username: root
     password: Zxcv569692?
