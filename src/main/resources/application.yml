@@ -4,7 +4,7 @@ server:
 
 spring:
   profiles:
-    active: pro
+    active: prod
 fdfs:
   so-timeout: 1501
   connect-timeout: 601
