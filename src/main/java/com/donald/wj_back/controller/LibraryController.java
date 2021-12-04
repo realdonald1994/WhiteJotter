@@ -25,6 +25,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class LibraryController {
     @Autowired
     private BookService bookService;
@@ -74,7 +75,6 @@ public class LibraryController {
         return categoryService.list();
     }
 
-    @CrossOrigin("http://www.whitejotter.site:8085")
     @PostMapping("covers")
     public String coverUpload(MultipartFile file) {
 //        String folder = "G:/ws/data";

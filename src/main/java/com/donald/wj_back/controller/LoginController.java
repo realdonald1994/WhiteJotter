@@ -21,6 +21,7 @@ import org.springframework.web.util.HtmlUtils;
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class LoginController {
 
     @Autowired

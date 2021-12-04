@@ -17,6 +17,7 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class JotterController {
     @Autowired
     private JotterArticleService jotterArticleService;

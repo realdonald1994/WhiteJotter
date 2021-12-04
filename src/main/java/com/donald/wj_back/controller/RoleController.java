@@ -21,6 +21,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class RoleController {
     @Autowired
     private AdminRoleService adminRoleService;
