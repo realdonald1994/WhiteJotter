@@ -36,7 +36,7 @@ public class LibraryController {
     private FastFileStorageClient storageClient;
 
     @GetMapping("books")
-    public MyPage<Book> list(@PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable){
+    public Page<Book> list(@PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable){
         return bookService.list(pageable);
     }
 
@@ -54,9 +54,9 @@ public class LibraryController {
     @GetMapping("categories/{cid}/books")
     public Page<Book> listByCategory(@PathVariable("cid")int cid, @PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC)Pageable pageable){
         if( 0!=cid){
-            return bookService.listByCategory(cid,pageable);
+            return  bookService.listByCategory(cid,pageable);
         }else{
-            return (Page<Book>) list(pageable);
+            return  list(pageable);
         }
     }
 

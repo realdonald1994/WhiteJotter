@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
  * @data 13/05/2020 15:11
  */
 public interface BookService {
-    MyPage<Book> list(Pageable pageable);
+    Page<Book> list(Pageable pageable);
 
     void addOrUpdate(Book book);
 

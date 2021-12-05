@@ -35,17 +35,17 @@ public class BookServiceImpl implements BookService {
     private RedisService redisService;
 
     @Override
-    public MyPage<Book> list(Pageable pageable) {
-        MyPage<Book> books;
+    public Page<Book> list(Pageable pageable) {
+        Page<Book> books;
         String key = "booklist";
         Object bookCache = redisService.get(key);
 
         if(bookCache ==null){
             Page<Book> booksInDb = bookDao.findAll(pageable);
-            books = (MyPage<Book>) booksInDb;
+            books = (Page<Book>) booksInDb;
             redisService.set(key,books);
         }else {
-            books = (MyPage<Book>)bookCache;
+            books = (Page<Book>)bookCache;
         }
         return books;
     }
