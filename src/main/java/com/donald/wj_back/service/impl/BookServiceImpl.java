@@ -37,7 +37,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public MyPage<Book> list(Pageable pageable) {
         MyPage<Book> books;
-        String key = "booklist";
+        String key = "booklist"+pageable.getPageNumber();
         Object bookCache = redisService.get(key);
 
         if(bookCache ==null){
