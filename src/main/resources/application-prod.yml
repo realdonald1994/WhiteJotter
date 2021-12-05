@@ -14,8 +14,8 @@ spring:
       auto-commit: true
   jpa:
     hibernate:
-      ddl-auto: none
-    show-sql: false
+      ddl-auto: update
+    show-sql: true
   servlet:
     multipart:
       max-file-size: 1MB
