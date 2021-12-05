@@ -10,13 +10,13 @@ import org.springframework.data.domain.Pageable;
  * @data 13/05/2020 15:11
  */
 public interface BookService {
-    Page<Book> list(Pageable pageable);
+    MyPage<Book> list(Pageable pageable);
 
     void addOrUpdate(Book book);
 
     void deleteById(int id);
 
-    Page<Book> listByCategory(int cid, Pageable pageable);
+    MyPage<Book> listByCategory(int cid, Pageable pageable);
 
-    Page<Book> search(String keyword, Pageable pageable);
+    MyPage<Book> search(String keyword, Pageable pageable);
 }

@@ -36,7 +36,7 @@ public class LibraryController {
     private FastFileStorageClient storageClient;
 
     @GetMapping("books")
-    public Page<Book> list(@PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable){
+    public MyPage<Book> list(@PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC) Pageable pageable){
         return bookService.list(pageable);
     }
 
@@ -52,19 +52,19 @@ public class LibraryController {
     }
 
     @GetMapping("categories/{cid}/books")
-    public Page<Book> listByCategory(@PathVariable("cid")int cid, @PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC)Pageable pageable){
+    public MyPage<Book> listByCategory(@PathVariable("cid")int cid, @PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC)Pageable pageable){
         if( 0!=cid){
             return  bookService.listByCategory(cid,pageable);
         }else{
-            return  list(pageable);
+            return   list(pageable);
         }
     }
 
 
     @GetMapping("search")
-    public Page<Book> searchResult(@RequestParam("keyword") String keyword, @PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC)Pageable pageable){
+    public MyPage<Book> searchResult(@RequestParam("keyword") String keyword, @PageableDefault(size = 5,sort = "id",direction = Sort.Direction.DESC)Pageable pageable){
         if("".equals(keyword)){
-            return (Page<Book>) bookService.list(pageable);
+            return  bookService.list(pageable);
         }else{
             return bookService.search(keyword,pageable);
         }

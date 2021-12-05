@@ -35,17 +35,17 @@ public class BookServiceImpl implements BookService {
     private RedisService redisService;
 
     @Override
-    public Page<Book> list(Pageable pageable) {
-        Page<Book> books;
+    public MyPage<Book> list(Pageable pageable) {
+        MyPage<Book> books;
         String key = "booklist";
         Object bookCache = redisService.get(key);
 
         if(bookCache ==null){
             Page<Book> booksInDb = bookDao.findAll(pageable);
-            books = (Page<Book>) booksInDb;
+            books = new MyPage<Book>(booksInDb);
             redisService.set(key,books);
         }else {
-            books = (Page<Book>)bookCache;
+            books = (MyPage<Book>)bookCache;
         }
         return books;
     }
@@ -76,13 +76,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Page<Book> listByCategory(int cid,Pageable pageable) {
+    public MyPage<Book> listByCategory(int cid,Pageable pageable) {
         Category category = categoryService.get(cid);
-        return bookDao.findAllByCategory(category,pageable);
+        Page<Book> page = bookDao.findAllByCategory(category, pageable);
+        MyPage<Book> myPage = new MyPage<>(page);
+        return myPage;
     }
 
     @Override
-    public Page<Book> search(String keyword,Pageable pageable) {
-        return bookDao.findAllByTitleLikeOrAuthorLike("%"+keyword+"%","%"+keyword+"%",pageable);
+    public MyPage<Book> search(String keyword,Pageable pageable) {
+        Page<Book> page = bookDao.findAllByTitleLikeOrAuthorLike("%" + keyword + "%", "%" + keyword + "%", pageable);
+        MyPage<Book> myPage = new MyPage<>(page);
+        return myPage;
+
     }
 }
